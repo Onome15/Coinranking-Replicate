@@ -3,29 +3,30 @@ import Header from '../Components/Header'
 export default function Home({ crypto }) {
 
   return (
-    <>
+    <div className='container'>
       <Header />
       <div>
         <h1 className='text-center p-2 text-xl md:text-2xl font-bold'>
           Cryptocurrency price list
         </h1>
-        <table className="w-full border relative">
-          <thead className='font-bold '>
-            <tr>
-              <th className='sticky top-0'>ALL COINS</th>
-              <th className='sticky top-0'>PRICE</th>
-              <th className='sticky top-0'>MARKET CAP</th>
-              <th className='sticky top-0'>24h</th>
+  
+        <table className="min-w-full relative">
+          <thead className='font-bold'>
+            <tr className=''>
+              <th className='sticky top-0 text-left bg-blue-200'>ALL COINS</th>
+              <th className='sticky top-0 text-left bg-blue-200'>PRICE</th>
+              <th className='sticky top-0 text-left bg-blue-200 invisible md:visible'>MARKET CAP</th>
+              <th className='sticky top-0 text-left bg-blue-200'>24h</th>
             </tr>
           </thead>
-
+          <tbody>
           {crypto.map((coins, index) => {
+
             return (
-              <>
-                <tbody>
-                  <tr key={index}>
+         <tr key={index}>
                     <td>
                       <table>
+                        <tbody>
                         <tr>
                           <td> 🤍</td>
                           <td className='px-4'>{Number(index) + 1}</td>
@@ -35,22 +36,23 @@ export default function Home({ crypto }) {
                             <p>{coins.symbol}</p>
                           </td>
                         </tr>
+                        </tbody>
                       </table>
                     </td>
-                    <td>${(Number(coins.price)).toFixed(2)}</td>
-                    <td>${(Number(coins.marketCap) / 1000000000).toFixed(2)} billion</td>
-                    {/* <td> {coins.hVolume}</td> */}
-
-                  </tr>
-                </tbody>
-                <hr />
-              </>
+                    <td>
+                      <p>${(Number(coins.price)).toFixed(2)}</p>
+                    <p className='md:hidden'>${(Number(coins.marketCap) / 1000000000).toFixed(2)}B</p>  
+                    </td>
+                    <td className='invisible md:visible'>${(Number(coins.marketCap) / 1000000000).toFixed(2)} billion</td>
+                    <td> {coins.change}</td>
+                  </tr>     
             )
           })}
-
+ </tbody>
         </table>
-      </div>
-    </>
+        </div>
+       
+    </div>
   );
 }
 

@@ -13,7 +13,7 @@ import { useState } from "react";
                     <div className="justify-between px-4 mx-auto lg:max-w-7xl lg:items-center lg:flex lg:px-8">
                         <div>
                             <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
-                                <a href="javascript:void(0)">
+                                <a href="">
                                     <h2 className='text-xl md:text-2xl font-semibold'>Coinranking</h2>
                                 </a>
                                 <div className="lg:hidden">
