@@ -61,10 +61,10 @@ import { useState } from "react";
                             >
                                 <ul className="items-center justify-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
                                     <li className="text-gray-600 hover:text-blue-600">
-                                        <a href="javascript:void(0)">Cryptocurrencies</a>
+                                        <a href="">Cryptocurrencies</a>
                                     </li>
                                     <li className="text-gray-600 hover:text-blue-600">
-                                        <a href="javascript:void(0)">Exchange</a>
+                                        <a href="">Exchange</a>
                                     </li>
 
                                 </ul>
