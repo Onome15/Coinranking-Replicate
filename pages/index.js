@@ -10,22 +10,22 @@ export default function Home({ crypto }) {
           Cryptocurrency price list
         </h1>
   
-        <table className="min-w-full relative">
-          <thead className='font-bold'>
+        <table className="min-w-full relative border font-medium">
+          <thead className='font-bold border '>
             <tr className=''>
-              <th className='sticky top-0 text-left bg-blue-200'>ALL COINS</th>
-              <th className='sticky top-0 text-left bg-blue-200'>PRICE</th>
-              <th className='sticky top-0 text-left bg-blue-200 invisible md:visible'>MARKET CAP</th>
-              <th className='sticky top-0 text-left bg-blue-200'>24h</th>
+              <th className='sticky top-0 text-left py-3 border-bottom '>ALL COINS</th>
+              <th className='sticky top-0 text-left py-3'>PRICE</th>
+              <th className='sticky top-0 text-left py-3 hidden md:table-cell'>MARKET CAP</th>
+              <th className='sticky top-0 text-left py-3'>24h</th>
             </tr>
           </thead>
           <tbody>
           {crypto.map((coins, index) => {
 
             return (
-         <tr key={index}>
+         <tr key={index} className='border'>
                     <td>
-                      <table>
+                      <table className='-mr-32 md:-mr-40 lg:-mr-56'>
                         <tbody>
                         <tr>
                           <td> 🤍</td>
@@ -33,7 +33,7 @@ export default function Home({ crypto }) {
                           <td><img src={coins.iconUrl} alt="logo" width="30px" /></td>
                           <td className='pl-4'>
                             {coins.name}
-                            <p>{coins.symbol}</p>
+                            <p className='font-normal'>{coins.symbol}</p>
                           </td>
                         </tr>
                         </tbody>
@@ -43,7 +43,7 @@ export default function Home({ crypto }) {
                       <p>${(Number(coins.price)).toFixed(2)}</p>
                     <p className='md:hidden'>${(Number(coins.marketCap) / 1000000000).toFixed(2)}B</p>  
                     </td>
-                    <td className='invisible md:visible'>${(Number(coins.marketCap) / 1000000000).toFixed(2)} billion</td>
+                    <td className='hidden md:table-cell'>${(Number(coins.marketCap) / 1000000000).toFixed(2)} billion</td>
                     <td> {coins.change}</td>
                   </tr>     
             )

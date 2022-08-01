@@ -18,3 +18,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+th {
+  background-color: white;
+  opacity: 0.9;
+}
+
