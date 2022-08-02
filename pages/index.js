@@ -1,7 +1,7 @@
-import Header from '../Components/Header'
+import Header from '../Components/Header';
+import React, { useState } from 'react';
 
 export default function Home({ crypto }) {
-
   return (
     <div className='container'>
       <Header />
@@ -9,49 +9,55 @@ export default function Home({ crypto }) {
         <h1 className='text-center p-2 text-xl md:text-2xl font-bold'>
           Cryptocurrency price list
         </h1>
-  
+
         <table className="min-w-full relative border font-medium">
           <thead className='font-bold border '>
             <tr className=''>
-              <th className='sticky top-0 text-left py-3 border-bottom '>ALL COINS</th>
-              <th className='sticky top-0 text-left py-3'>PRICE</th>
-              <th className='sticky top-0 text-left py-3 hidden md:table-cell'>MARKET CAP</th>
-              <th className='sticky top-0 text-left py-3'>24h</th>
+              <th className='sticky top-0 text-left py-3 bg-white opacity-90'>ALL COINS</th>
+              <th className='sticky top-0 text-left py-3 bg-white opacity-90'>PRICE</th>
+              <th className='sticky top-0 text-left py-3 bg-white opacity-90 hidden md:table-cell'>MARKET CAP</th>
+              <th className='sticky top-0 text-left py-3 bg-white opacity-90'>24h</th>
             </tr>
           </thead>
           <tbody>
-          {crypto.map((coins, index) => {
+            {crypto.map((coins, index) => {
 
-            return (
-         <tr key={index} className='border'>
-                    <td>
-                      <table className='-mr-32 md:-mr-40 lg:-mr-56'>
-                        <tbody>
+              const price1 = Number(coins.price); // store the returned data as variable
+
+              const price0 = price1 < 1 ? price1.toFixed(4) : price1 < 10 ? price1.toFixed(3) : price1.toFixed(2); // ternary condition of toFixed according to their various prices
+
+              const price = price0 > 1000 ? (parseFloat(price0)).toLocaleString() : price0; //toLocaleSting adds a comma to number above 1000
+
+              return (
+                <tr key={index} className='border'>
+                  <td>
+                    <table className='-mr-32 md:-mr-40 lg:-mr-56'>
+                      <tbody>
                         <tr>
                           <td> 🤍</td>
                           <td className='px-4'>{Number(index) + 1}</td>
                           <td><img src={coins.iconUrl} alt="logo" width="30px" /></td>
                           <td className='pl-4'>
-                            {coins.name}
+                            <p>{coins.name}</p>
                             <p className='font-normal'>{coins.symbol}</p>
                           </td>
                         </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td>
-                      <p>${(Number(coins.price)).toFixed(2)}</p>
-                    <p className='md:hidden'>${(Number(coins.marketCap) / 1000000000).toFixed(2)}B</p>  
-                    </td>
-                    <td className='hidden md:table-cell'>${(Number(coins.marketCap) / 1000000000).toFixed(2)} billion</td>
-                    <td> {coins.change}</td>
-                  </tr>     
-            )
-          })}
- </tbody>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td>
+                    <p>${price}</p>
+                    <p className='md:hidden text-xs'>${(Number(coins.marketCap) / 1000000000).toFixed(2)}B</p>
+                  </td>
+                  <td className='hidden md:table-cell'>${(Number(coins.marketCap) / 1000000000).toFixed(2)} billion</td>
+                  <td> {coins.change}%</td>
+                </tr>
+              )
+            })}
+          </tbody>
         </table>
-        </div>
-       
+      </div>
+
     </div>
   );
 }

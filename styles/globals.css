@@ -19,8 +19,13 @@ a {
   box-sizing: border-box;
 }
 
-th {
-  background-color: white;
-  opacity: 0.9;
+
+th:after{
+  content:'';
+  position:absolute;
+  left: 0;
+  bottom: 0;
+  width:100%;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
 }
 
