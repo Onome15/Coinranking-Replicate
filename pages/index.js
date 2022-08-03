@@ -26,7 +26,7 @@ export default function Home({ crypto }) {
 
               const price0 = price1 < 1 ? price1.toFixed(4) : price1 < 10 ? price1.toFixed(3) : price1.toFixed(2); // ternary condition of toFixed according to their various prices
 
-              const price = price0 > 1000 ? (parseFloat(price0)).toLocaleString() : price0; //toLocaleSting adds a comma to number above 1000
+              const price = price0 > 1000 ? (parseFloat(price0)).toLocaleString() : price0; // toLocaleSting adds a comma to number above 1000
 
               return (
                 <tr key={index} className='border'>
@@ -52,12 +52,10 @@ export default function Home({ crypto }) {
                   <td className='hidden md:table-cell'>${(Number(coins.marketCap) / 1000000000).toFixed(2)} billion</td>
                   <td> {coins.change}%</td>
                 </tr>
-              )
-            })}
+              ) })}          
           </tbody>
         </table>
       </div>
-
     </div>
   );
 }
@@ -70,6 +68,7 @@ export async function getStaticProps() {
       'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
     }
   };
+  
   const res = await fetch('https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0', options)
 
   const data = await res.json();
@@ -79,5 +78,6 @@ export async function getStaticProps() {
     props: {
       crypto,
     },
+    // revalidate: 10,
   };
 }
