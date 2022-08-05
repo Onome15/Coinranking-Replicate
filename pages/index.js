@@ -13,7 +13,8 @@ const fetcher = async (url) => {
 
 export default function Home() {
 
-  const { data, error } = useSWR('https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0', fetcher)
+  const url = 'https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0';
+  const { data, error } = useSWR( url, fetcher, { refreshInterval: 10 })
 
   if (error) return <div>failed to load</div>
   if (!data) return <div> </div>
