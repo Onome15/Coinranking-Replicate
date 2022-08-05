@@ -1,7 +1,27 @@
 import Header from '../Components/Header';
-import React, { useState } from 'react';
 
-export default function Home({ crypto }) {
+import useSWR from 'swr'
+
+const fetcher = async (url) => {
+  return await fetch(url, {
+   headers: {
+         'X-RapidAPI-Key': 'f6e3012224msh989d04bf16d703fp14b80ajsn5586002f94ec',
+         'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
+       }
+ }).then(response => response.json());
+}
+
+export default function Home() {
+
+  const { data, error } = useSWR('https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0', fetcher)
+
+  if (error) return <div>failed to load</div>
+  if (!data) return <div> </div>
+
+  const posts = data.data.coins;
+
+  console.log(posts);
+
   return (
     <div className='container'>
       <Header />
@@ -20,7 +40,7 @@ export default function Home({ crypto }) {
             </tr>
           </thead>
           <tbody>
-            {crypto.map((coins, index) => {
+            {posts && posts.map((coins, index) => {
 
               const price1 = Number(coins.price); // store the returned data as variable
 
@@ -34,7 +54,7 @@ export default function Home({ crypto }) {
                     <table className='-mr-32 md:-mr-40 lg:-mr-56'>
                       <tbody>
                         <tr>
-                          <td> 🤍</td>
+                          <td> </td>
                           <td className='px-4'>{Number(index) + 1}</td>
                           <td><img src={coins.iconUrl} alt="logo" width="30px" /></td>
                           <td className='pl-4'>
@@ -60,24 +80,3 @@ export default function Home({ crypto }) {
   );
 }
 
-export async function getStaticProps() {
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': 'f6e3012224msh989d04bf16d703fp14b80ajsn5586002f94ec',
-      'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
-    }
-  };
-  
-  const res = await fetch('https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0', options)
-
-  const data = await res.json();
-  const crypto = data.data.coins;
-
-  return {
-    props: {
-      crypto,
-    },
-    // revalidate: 10,
-  };
-}
