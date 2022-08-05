@@ -1,5 +1,4 @@
 import Header from '../Components/Header';
-
 import useSWR from 'swr'
 
 const fetcher = async (url) => {
