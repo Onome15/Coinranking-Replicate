@@ -1,5 +1,5 @@
-import Header from '../Components/Header';
-import useSWR from 'swr'
+import useSWR from 'swr';
+import Image from 'next/image'
 
 const fetcher = async (url) => {
   return await fetch(url, {
@@ -13,9 +13,9 @@ const fetcher = async (url) => {
 export default function Home() {
 
   const url = 'https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0';
-  const { data, error } = useSWR( url, fetcher, { refreshInterval: 10 })
+  const { data, error } = useSWR( url, fetcher)
 
-  if (error) return <div> Error Page! </div>
+  if (error) return <div> </div>
   if (!data) return <div> </div>
 
   const posts = data.data.coins;
@@ -24,7 +24,6 @@ export default function Home() {
 
   return (
     <div className='container'>
-      <Header />
       <div>
         <h1 className='text-center p-2 text-xl md:text-2xl font-bold'>
           Cryptocurrency price list
@@ -32,7 +31,7 @@ export default function Home() {
 
         <table className="min-w-full relative border font-medium">
           <thead className='font-bold border '>
-            <tr className=''>
+            <tr>
               <th className='sticky top-0 text-left py-3 bg-white opacity-90'>ALL COINS</th>
               <th className='sticky top-0 text-left py-3 bg-white opacity-90'>PRICE</th>
               <th className='sticky top-0 text-left py-3 bg-white opacity-90 hidden md:table-cell'>MARKET CAP</th>
@@ -56,7 +55,7 @@ export default function Home() {
                         <tr>
                           <td> </td>
                           <td className='px-4'>{Number(index) + 1}</td>
-                          <td><img src={coins.iconUrl} alt="logo" width="30px" /></td>
+                          <td><Image src={coins.iconUrl} alt="logo" width={30} height={30} /></td>
                           <td className='pl-4'>
                             <p>{coins.name}</p>
                             <p className='font-normal'>{coins.symbol}</p>

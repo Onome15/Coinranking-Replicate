@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from "react";
-
+import Link from 'next/link'
+import styles from '../styles/Home.module.css'
 
 
     const Navbar = () => {
@@ -13,9 +14,11 @@ import { useState } from "react";
                     <div className="justify-between px-4 mx-auto lg:max-w-7xl lg:items-center lg:flex lg:px-8">
                         <div>
                             <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
-                                <a href="">
+                               <Link href="/"> 
+                                <a >
                                     <h2 className='text-xl md:text-2xl font-semibold'>Coinranking</h2>
                                 </a>
+                                </Link>
                                 <div className="lg:hidden">
                                     <button
                                         className="p-2 text-gray-700 rounded-lg outline-none focus:border-gray-400 focus:border"
@@ -61,10 +64,10 @@ import { useState } from "react";
                             >
                                 <ul className="items-center justify-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
                                     <li className="text-gray-600 hover:text-blue-600">
-                                        <a href="">Cryptocurrencies</a>
+                                    <Link href='/'><a><li>Cryptocurrency</li></a></Link>
                                     </li>
                                     <li className="text-gray-600 hover:text-blue-600">
-                                        <a href="">Exchange</a>
+                                    <Link href='/Exchanges'><a><li>Exchanges</li></a></Link>
                                     </li>
 
                                 </ul>
