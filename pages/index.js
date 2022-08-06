@@ -20,8 +20,6 @@ export default function Home() {
 
   const posts = data.data.coins;
 
-  console.log(posts);
-
   return (
     <div className='container'>
       <div>
