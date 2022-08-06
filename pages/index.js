@@ -15,7 +15,7 @@ export default function Home() {
   const url = 'https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0';
   const { data, error } = useSWR( url, fetcher, { refreshInterval: 10 })
 
-  if (error) return <div>failed to load</div>
+  if (error) return <div> Error Page! </div>
   if (!data) return <div> </div>
 
   const posts = data.data.coins;
