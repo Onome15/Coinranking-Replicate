@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from "react";
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+
 
 
     const Navbar = () => {
@@ -64,12 +64,11 @@ import styles from '../styles/Home.module.css'
                             >
                                 <ul className="items-center justify-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
                                     <li className="text-gray-600 hover:text-blue-600">
-                                    <Link href='/'><a><li>Cryptocurrency</li></a></Link>
+                                    <Link href='/'><a>Cryptocurrency</a></Link>
                                     </li>
                                     <li className="text-gray-600 hover:text-blue-600">
-                                    <Link href='/Exchanges'><a><li>Exchanges</li></a></Link>
+                                    <Link href='/Exchanges'><a>Exchanges</a></Link>
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
