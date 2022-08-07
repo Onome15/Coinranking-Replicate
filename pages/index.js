@@ -22,9 +22,9 @@ export default function Home() {
 
   return (
     <div className='container'>
-      <div>
+      <div className='text-red-500 bg-blue-100'>
         <h1 className='text-center p-2 text-xl md:text-2xl font-bold'>
-          Cryptocurrency price list
+          Cryptocurrency price listssss
         </h1>
 
         <table className="min-w-full relative border font-medium">
