@@ -21,10 +21,10 @@ export default function Home() {
   const posts = data.data.coins;
 
   return (
-    <div className='container'>
-      <div className='text-red-500 bg-blue-100'>
+    <div className='mx-auto pl-10'>
+      <div>
         <h1 className='text-center p-2 text-xl md:text-2xl font-bold'>
-          Cryptocurrency price listssss
+          Cryptocurrency price list
         </h1>
 
         <table className="min-w-full relative border font-medium">
