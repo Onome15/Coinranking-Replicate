@@ -2,8 +2,6 @@ import React from 'react'
 import { useState } from "react";
 import Link from 'next/link'
 
-
-
     const Navbar = () => {
 
         const [navbar, setNavbar] = useState(false);
@@ -15,7 +13,7 @@ import Link from 'next/link'
                         <div>
                             <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
                                <Link href="/"> 
-                                <a >
+                                <a onClick={() => navbar == true && setNavbar(!navbar)}>
                                     <h2 className='text-xl md:text-2xl font-semibold'>Coinranking</h2>
                                 </a>
                                 </Link>
@@ -64,10 +62,10 @@ import Link from 'next/link'
                             >
                                 <ul className="items-center justify-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
                                     <li className="text-gray-600 hover:text-blue-600">
-                                    <Link href='/'><a>Cryptocurrency</a></Link>
+                                    <Link href='/'><a onClick={() => setNavbar(!navbar)}>Cryptocurrency</a></Link>
                                     </li>
                                     <li className="text-gray-600 hover:text-blue-600">
-                                    <Link href='/Exchanges'><a>Exchanges</a></Link>
+                                    <Link href='/Exchanges'><a onClick={() => setNavbar(!navbar)}>Exchanges</a></Link>
                                     </li>
                                 </ul>
                             </div>
