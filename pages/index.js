@@ -40,7 +40,8 @@ export default function Home() {
           Cryptocurrency price list
         </h1>
 
-        <table className="w-full relative border font-medium">
+        <table className="w-full relative border font-medium ">
+  <table className='container mx-auto'>
           <thead className='font-bold border '>
             <tr>
               <th className='sticky top-0 text-left py-3 bg-white opacity-90'>ALL COINS</th>
@@ -85,7 +86,11 @@ export default function Home() {
               )
             })}
           </tbody>
+          </table>
         </table>
+      </div>
+      <div className=''>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo enim perspiciatis, repellat ea architecto odio voluptates rem possimus, temporibus beatae hic. Voluptate nostrum dolor quaerat delectus dolores, maiores impedit porro, quis quasi magni modi saepe quidem? Vel enim voluptas voluptate maxime dolores cum excepturi error. Sapiente provident temporibus nam consequuntur eveniet veritatis quis nostrum? Enim corporis recusandae incidunt a, mollitia nihil eaque beatae architecto atque minus perferendis harum consequuntur iure quo corrupti tenetur accusantium. Odit molestiae error neque pariatur accusantium dignissimos tempora dicta, adipisci harum? Pariatur cupiditate harum porro qui! Mollitia, cum laboriosam molestias vitae perferendis aut nesciunt saepe deserunt.
       </div>
     </div>
   );

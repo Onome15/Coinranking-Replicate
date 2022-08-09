@@ -1,20 +1,6 @@
 import React from 'react'
 import useSWR from 'swr';
 
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': 'f6e3012224msh989d04bf16d703fp14b80ajsn5586002f94ec',
-// 		'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
-// 	}
-// };
-
-// fetch(', options)
-// 	.then(response => response.json())
-// 	.then(response => console.log(response))
-// 	.catch(err => console.error(err));
-
-
 const fetcher = async (url) => {
     return await fetch(url, {
         method: 'GET',
@@ -58,7 +44,7 @@ const Exchanges = () => {
                 {exchanges && exchanges.map((exchanges, index) => {
 
                     return (
-                        <div>
+                        <div key={index}>
 
                             <p className='text-xl'>
                                 <span>{Number(index) + 1} </span>
