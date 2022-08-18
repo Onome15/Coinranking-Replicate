@@ -38,3 +38,9 @@ table {
   /* width:300px; */
   /* table-layout:fixed; */
 }
+
+p > span.float {
+  float: right;
+  font-weight: bold;
+  /* margin-top: 10px; */
+}

@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 import Image from 'next/image'
+import { useState } from 'react';
 
 const fetcher = async (url) => {
   return await fetch(url, {
@@ -11,6 +12,8 @@ const fetcher = async (url) => {
 }
 
 export default function Home() {
+
+  const [search, setSearch] = useState("");
 
   const url = 'https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0';
   const { data, error } = useSWR(url, fetcher)
@@ -32,6 +35,7 @@ export default function Home() {
     </div>
   )
   const posts = data.data.coins;
+  const stats = data.data.stats;
 
   return (
     <div className='mx-auto pl-10-'>
@@ -39,7 +43,13 @@ export default function Home() {
         <h1 className='text-center p-2 text-xl md:text-2xl font-bold'>
           Cryptocurrency price list
         </h1>
-
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+        />
         <table className="w-full relative border font-medium container mx-auto">
           <thead className='font-bold border '>
             <tr>
@@ -50,43 +60,76 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {posts && posts.map((coins, index) => {
+            {posts && posts
 
-              const price1 = Number(coins.price); // store the returned data as variable
+              .filter((coins) => {
+                return coins.name.toLowerCase().includes(search.toLowerCase());
+              })
 
-              const price0 = price1 < 1 ? price1.toFixed(4) : price1 < 10 ? price1.toFixed(3) : price1.toFixed(2); // ternary condition of toFixed according to their various prices
+              .map((coins, index) => {
 
-              const price = price0 > 1000 ? (parseFloat(price0)).toLocaleString() : price0; // toLocaleSting adds a comma to number above 1000
+                const price1 = Number(coins.price); // store the returned data as variable
 
-              return (
-                <tr key={index} className='border'>
-                  <td>
-                    <table className='-mr-32 md:-mr-40 lg:-mr-56'>
-                      <tbody>
-                        <tr>
-                          <td> </td>
-                          <td className='px-4'>{Number(index) + 1}</td>
-                          <td><Image src={coins.iconUrl} alt="logo" width={30} height={30} className='-z-10' /></td>
-                          <td className='pl-4'>
-                            <p>{coins.name}</p>
-                            <p className='font-normal'>{coins.symbol}</p>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                  <td>
-                    <p>${price}</p>
-                    <p className='md:hidden text-xs'>${(Number(coins.marketCap) / 1000000000).toFixed(2)}B</p>
-                  </td>
-                  <td className='hidden md:table-cell'>${(Number(coins.marketCap) / 1000000000).toFixed(2)} billion</td>
-                  <td> {coins.change}%</td>
-                </tr>
-              )
-            })}
+                const price0 = price1 < 1 ? price1.toFixed(4) : price1 < 10 ? price1.toFixed(3) : price1.toFixed(2); // ternary condition of toFixed according to their various prices
+
+                const price = price0 > 1000 ? (parseFloat(price0)).toLocaleString() : price0; // toLocaleSting adds a comma to number above 1000
+
+                return (
+                  <tr key={index} className='border'>
+                    <td>
+                      <table className='-mr-32 md:-mr-40 lg:-mr-56'>
+                        <tbody>
+                          <tr>
+                            <td> </td>
+                            <td className='px-4'>{Number(index) + 1}</td>
+                            <td><Image src={coins.iconUrl} alt="logo" width={30} height={30} className='-z-10' /></td>
+                            <td className='pl-4'>
+                              <p>{coins.name}</p>
+                              <p className='font-normal'>{coins.symbol}</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td>
+                      <p>${price}</p>
+                      <p className='md:hidden text-xs'>${(Number(coins.marketCap) / 1000000000).toFixed(2)}B</p>
+                    </td>
+                    <td className='hidden md:table-cell'>${(Number(coins.marketCap) / 1000000000).toFixed(2)} billion</td>
+                    <td> {coins.change}%</td>
+                  </tr>
+                )
+              })}
           </tbody>
         </table>
       </div>
+
+      <div className='container mx-auto sm:text-sm text-md grid gap-x-20 gap-y-10 xl:gap-x-24 lg:grid-cols-2 mt-20'>
+        <div>
+          <h1 className='text-xl md:text-2xl font-bold'>Cryptocurrency market statistics</h1>
+          <p>An overview of the complete cryptocurrency market, including the number of cryptocurrencies, the total market cap, and trading volume.</p>
+          <div>
+            <p> Crypto market cap <span className='float'> ${(Number(stats.totalMarketCap) / 1000000000000).toFixed(2)} trillion </span> </p>
+            <hr />
+            <p>24h volume <span className='float'>${(Number(stats.total24hVolume) / 1000000000).toFixed(2)} billion</span></p>
+            <hr />
+            <p> All coins<span className='float'>{stats.totalCoins}</span></p>
+            <hr />
+            <p> All crypto exchanges<span className='float'>{stats.totalExchanges}</span></p>
+            <hr />
+            <p> All crypto markets<span className='float'>{stats.totalMarkets}</span></p>
+          </div>
+        </div>
+        <div className='bg-sky-100 rounded-lg  text-center'>
+          <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima magnam illo quam dolorum deserunt id ratione asperiores facilis voluptatum recusandae molestias nemo distinctio natus nulla repudiandae, eligendi ullam mollitia vero. </h1>
+          <h1>View crypto prices in Telegram</h1>
+          <p> Instant price updates. 10,000+ cryptocurrencies. Share with friends. </p>
+          <button className='bg-blue-500'> View telegram Bot </button>
+        </div>
+      </div>
+<div className='h-56'>
+
+</div>
     </div>
   );
 }

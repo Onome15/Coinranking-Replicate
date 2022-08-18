@@ -114,3 +114,7 @@
     flex-direction: column;
   }
 }
+
+p > span {
+  float: right
+}
