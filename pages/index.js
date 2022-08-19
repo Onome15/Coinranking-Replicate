@@ -42,7 +42,7 @@ export default function Home() {
     <div className='mx-auto pl-10-'>
       <div>
         <h1 className='text-center p-2 text-xl md:text-2xl font-bold'>
-          Cryptocurrency price list
+          Cryptocurrency Price List
         </h1>
         <input
           type="text"

@@ -5,7 +5,7 @@ const MarketStats = ({ stats }) => {
         <div>
             <div className='px-4 container text-sm md:text-base mx-auto grid gap-x-20 gap-y-10 xl:gap-x-24 lg:grid-cols-2 mt-20'>
                 <div>
-                    <h1 className='text-xl md:text-2xl font-bold'>Cryptocurrency market statistics</h1>
+                    <h1 className='text-xl md:text-2xl font-bold'>Cryptocurrency Market Statistics</h1>
                     <p>An overview of the complete cryptocurrency market, including the number of cryptocurrencies, the total market cap, and trading volume.</p>
                     <div>
                         <p className='p-4'> Crypto market cap <span className='float'> ${(Number(stats.totalMarketCap) / 1000000000000).toFixed(2)} trillion </span> </p>
@@ -23,7 +23,7 @@ const MarketStats = ({ stats }) => {
                     <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima magnam illo quam dolorum deserunt id ratione asperiores facilis voluptatum recusandae molestias nemo distinctio natus nulla repudiandae, eligendi ullam mollitia vero. </h1>
                     <h1 className='text-xl md:text-2xl font-bold'>View crypto prices in Telegram</h1>
                     <p className='py-4'> Instant price updates. 10,000+ cryptocurrencies. Share with friends. </p>
-                    <button class="bg-blue-500 hover:bg-blue-300 text-white font-bold py-3 px-6 rounded-full">
+                    <button className="bg-blue-500 hover:bg-blue-300 text-white font-bold py-3 px-6 rounded-full">
                         View telegram Bot
                     </button>
                 </div>
