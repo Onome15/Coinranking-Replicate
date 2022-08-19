@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import Image from 'next/image'
 import { useState } from 'react';
+import MarketStats from '../components/MarketStats';
 
 const fetcher = async (url) => {
   return await fetch(url, {
@@ -50,13 +51,13 @@ export default function Home() {
             setSearch(e.target.value);
           }}
         />
-        <table className="w-full relative border font-medium container mx-auto">
-          <thead className='font-bold border '>
+        <table className="w-full relative font-medium">
+          <thead className='font-bold border border-sky-200'>
             <tr>
-              <th className='sticky top-0 text-left py-3 bg-white opacity-90'>ALL COINS</th>
-              <th className='sticky top-0 text-left py-3 bg-white opacity-90'>PRICE</th>
-              <th className='sticky top-0 text-left py-3 bg-white opacity-90 hidden md:table-cell'>MARKET CAP</th>
-              <th className='sticky top-0 text-left py-3 bg-white opacity-90'>24h</th>
+              <th className='sticky top-0 text-left py-1 xl:pl-36 pl-4 bg-white opacity-90'>ALL COINS</th>
+              <th className='sticky top-0 text-left py-1 bg-white opacity-90'>PRICE</th>
+              <th className='sticky top-0 text-left py-1 bg-white opacity-90 hidden md:table-cell'>MARKET CAP</th>
+              <th className='sticky top-0 text-left py-1 xl:pr-10 pr-4 bg-white opacity-90'>24h</th>
             </tr>
           </thead>
           <tbody>
@@ -75,13 +76,13 @@ export default function Home() {
                 const price = price0 > 1000 ? (parseFloat(price0)).toLocaleString() : price0; // toLocaleSting adds a comma to number above 1000
 
                 return (
-                  <tr key={index} className='border'>
+                  <tr key={index} className='border border-sky-200'>
                     <td>
-                      <table className='-mr-32 md:-mr-40 lg:-mr-56'>
+                      <table className='-mr-32 md:-mr-40 lg:-mr-72 xl:-mr-96'>
                         <tbody>
                           <tr>
                             <td> </td>
-                            <td className='px-4'>{Number(index) + 1}</td>
+                            <td className='px-4 xl:pl-36 pl-4'>{Number(index) + 1}</td>
                             <td><Image src={coins.iconUrl} alt="logo" width={30} height={30} className='-z-10' /></td>
                             <td className='pl-4'>
                               <p>{coins.name}</p>
@@ -102,34 +103,8 @@ export default function Home() {
               })}
           </tbody>
         </table>
-      </div>
-
-      <div className='container mx-auto sm:text-sm text-md grid gap-x-20 gap-y-10 xl:gap-x-24 lg:grid-cols-2 mt-20'>
-        <div>
-          <h1 className='text-xl md:text-2xl font-bold'>Cryptocurrency market statistics</h1>
-          <p>An overview of the complete cryptocurrency market, including the number of cryptocurrencies, the total market cap, and trading volume.</p>
-          <div>
-            <p> Crypto market cap <span className='float'> ${(Number(stats.totalMarketCap) / 1000000000000).toFixed(2)} trillion </span> </p>
-            <hr />
-            <p>24h volume <span className='float'>${(Number(stats.total24hVolume) / 1000000000).toFixed(2)} billion</span></p>
-            <hr />
-            <p> All coins<span className='float'>{stats.totalCoins}</span></p>
-            <hr />
-            <p> All crypto exchanges<span className='float'>{stats.totalExchanges}</span></p>
-            <hr />
-            <p> All crypto markets<span className='float'>{stats.totalMarkets}</span></p>
-          </div>
-        </div>
-        <div className='bg-sky-100 rounded-lg  text-center'>
-          <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima magnam illo quam dolorum deserunt id ratione asperiores facilis voluptatum recusandae molestias nemo distinctio natus nulla repudiandae, eligendi ullam mollitia vero. </h1>
-          <h1>View crypto prices in Telegram</h1>
-          <p> Instant price updates. 10,000+ cryptocurrencies. Share with friends. </p>
-          <button className='bg-blue-500'> View telegram Bot </button>
-        </div>
-      </div>
-<div className='h-56'>
-
-</div>
+      </div>    
+      <MarketStats stats={stats}/>     
     </div>
   );
 }

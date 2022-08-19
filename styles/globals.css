@@ -26,7 +26,8 @@ th:after{
   left: 0;
   bottom: 0;
   width:100%;
-  border-bottom: 1px solid rgba(0,0,0,0.12);
+  border-bottom: 1px solid#bae6fd
+  ;
 }
 
 td {
@@ -43,4 +44,8 @@ p > span.float {
   float: right;
   font-weight: bold;
   /* margin-top: 10px; */
+}
+
+hr{
+  border-color: #bae6fd;
 }
