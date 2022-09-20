@@ -38,7 +38,7 @@ const MarketStats = ({ stats }) => {
                         Show cryptocurrency data on your website or app
                     </div>
                     <div>
-                        <button className='bg-lime-700 hover:bg-blue-300 text-white font-bold py-2 px-6 rounded-full mr-5 lg:mr-0'> View API docs > </button>
+                        <button className='bg-lime-700 hover:bg-blue-300 text-white font-bold py-2 px-6 rounded-full mr-5 lg:mr-0'> View API docs  </button>
                         <button className='bg-blue-900 hover:bg-blue-300 text-white font-bold py-2 px-6 rounded-full'> Generate API key  </button>
                     </div>
                
